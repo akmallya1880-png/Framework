@@ -1,0 +1,35 @@
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+  
+    
+        public static class ConfigReader
+        {
+            private static IConfiguration _config;
+
+            static ConfigReader()
+            {
+                _config = new ConfigurationBuilder()
+                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    .AddJsonFile("appsettings.json", optional: false)
+                    .Build();
+            }
+
+            public static string Browser =>
+                _config["Browser"];
+
+            public static string BaseUrl =>
+                _config["BaseUrl"];
+
+            public static int ImplicitWait =>
+                int.Parse(_config["ImplicitWait"]);
+        }
+    }
+
+
