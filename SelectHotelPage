@@ -1,0 +1,27 @@
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+    public class SelectHotelPage : SeleniumBase
+    {
+        public SelectHotelPage(IWebDriver driver) : base(driver)
+        {
+        }
+        //By location = By.Id("location");
+        By radiobutton = By.Id("radiobutton_0");
+        By continuebutton = By.Id("continue");
+
+
+        public void SelectHotel()
+        {
+            ClickElement(radiobutton);
+            ClickElement(continuebutton);
+        }
+
+    }
+}
