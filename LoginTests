@@ -1,0 +1,30 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+    public class LoginTests:BaseTest1
+    {
+        [Test]
+        public void ValidLoginTest()
+        {
+            LoginPage1 login= new LoginPage1(driver);
+            login.Login("akmall1396", "4P0ERI");
+            SearchHotelPage  searchhotel= new SearchHotelPage(driver);
+             searchhotel.SearchHotel("Sydney", "Hotel Creek", "Standard",
+               "1 - One", "20/06/2026", "22/06/2026", "2 - Two", "0 - None");
+            SelectHotelPage selecthotel = new SelectHotelPage(driver);
+            selecthotel.SelectHotel();
+            BookAHotelPage bookahotel = new BookAHotelPage(driver);
+            bookahotel.BookAHotel("Ahnay", "Kamath", "JRGreenwich", "1234567890123457", "Master Card", "March", "2030","5000");
+            BookingConfirmation booking= new BookingConfirmation(driver);
+            booking.BookingConfirm();
+
+        }
+    }
+}
