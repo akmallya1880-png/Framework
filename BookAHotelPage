@@ -1,0 +1,44 @@
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+
+namespace Automation_Learning_November.Framework
+{
+    public class BookAHotelPage:SeleniumBase
+    {
+        public BookAHotelPage(IWebDriver driver):base(driver)
+        {
+        }
+        By FirstName = By.Id("first_name");
+        By LastName = By.Id("last_name");
+        By Address = By.Id("address");
+        By CreditCardNo = By.Id("cc_num");
+        By CreditCardType = By.Id("cc_type");
+        By ExpiryMonth = By.Id("cc_exp_month");
+        By ExpiryYear = By.Id("cc_exp_year");
+        By CVVNumber = By.Id("cc_cvv");
+        By BookNow = By.Id("book_now");
+        
+
+        public void BookAHotel(string first,string last,string addresses,string cardno,string type, string expmonth,string expyear,string cvv)
+        {
+            SendKeys(FirstName, first);
+            SendKeys(LastName, last);
+            SendKeys(Address, addresses);
+            SendKeys(CreditCardNo, cardno);
+            SelectByText(CreditCardType, type);
+            SelectByText(ExpiryMonth, expmonth);
+            SelectByValue(ExpiryYear, expyear);
+            SendKeys(CVVNumber, cvv);
+            ClickElement(BookNow);
+
+        }
+
+    }
+}
