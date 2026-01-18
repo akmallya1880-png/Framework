@@ -1,0 +1,42 @@
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+    public class SearchHotelPage:SeleniumBase
+    {
+        public SearchHotelPage(IWebDriver driver) : base(driver)
+        {
+        }
+
+        By location = By.Id("location");
+        By hotels = By.Id("hotels");
+        By roomType = By.Id("room_type");
+        By numberOfRooms = By.Id("room_nos");
+        By checkInDate = By.Id("datepick_in");
+        By checkOutDate = By.Id("datepick_out");
+        By adultsPerRoom = By.Id("adult_room");
+        By childrenPerRoom = By.Id("child_room");
+        By searchBtn = By.Id("Submit");
+
+        public void SearchHotel(string loc, string hotel, string rType,
+            string numOfRooms, string checkin, string checkOut,
+            string adultsPerRoomValue, string childrenPerRoomValue)
+        {
+            SelectByText(location, loc);
+            SelectByText(hotels, hotel);
+            SelectByText(roomType, rType);
+            SelectByText(numberOfRooms, numOfRooms);
+            SendKeys(checkInDate, checkin);
+            SendKeys(checkOutDate, checkOut);
+            SelectByText(adultsPerRoom, adultsPerRoomValue);
+            SelectByText(childrenPerRoom, childrenPerRoomValue);
+            ClickElement(searchBtn);
+        }
+
+    }
+}
