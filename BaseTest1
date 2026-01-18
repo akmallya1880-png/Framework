@@ -1,0 +1,33 @@
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+     public class BaseTest1
+    {
+        protected IWebDriver driver;
+        [SetUp]
+        public void SetUp()
+        {
+            driver = DriverFactory.CreateDriver("chrome");
+            driver.Navigate().GoToUrl(ConfigReader.BaseUrl);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+        if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+            {
+                new SeleniumBase(driver).TakeScreenshot(TestContext.CurrentContext.Test.Name);
+
+            }
+        driver.Quit();
+        }
+       
+    }
+}
