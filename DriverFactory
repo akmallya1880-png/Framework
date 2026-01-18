@@ -1,0 +1,55 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Automation_Learning_November.Framework
+{
+    public class DriverFactory
+    {
+
+        public static IWebDriver CreateDriver(string browser)
+        {
+            IWebDriver driver;
+
+            switch (ConfigReader.Browser.ToLower())
+            {
+                case "edge":
+                    driver = new EdgeDriver();
+                    break;
+                default:
+                    driver = new ChromeDriver();
+                    break;
+            }
+
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ConfigReader.ImplicitWait);
+            return driver;
+
+            //public static IWebDriver CreateDriver(string browser)
+            //{
+            //    IWebDriver driver;
+
+            //    switch (browser.ToLower())
+            //    {
+            //        case "edge":
+            //            driver = new EdgeDriver();
+            //            break;
+            //       default :
+            //            driver = new ChromeDriver();
+            //            break;
+            //    }
+
+            //    driver.Manage().Window.Maximize();
+            //    driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(10);
+            //   return driver;
+
+
+
+        }
+    }
+}
